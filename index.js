@@ -25,7 +25,11 @@ const gameBoard = (function(){
     })
   }
 
-  return {board, render}
+  const full = (arr) => {
+    return arr.every(ele => ele !== '')
+  }
+
+  return {board, render, full}
 })()
 
 gameBoard.render()

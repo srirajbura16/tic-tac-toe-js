@@ -8,10 +8,24 @@ const WINNINGS = [
   [0, 4, 8], [2, 4, 6] //diagonal
 ]
 
-const player = (name, symbol) => {
+const game = (function(){
+  const playerX = Player('HBO', 'X')
+  const playerO = Player('MMO', 'O')
+  let currentPlayer = playerX
+  let board = gameBoard.board
+
+  const gameOver = () => {
+    gameBoard.checkWinnings(currentPlayer.symbol) || 
+    gameBoard.full()
+  }
+
+  return {}
+})()
+
+const Player = (name, symbol) => {
 
   const input = () => {
-    console.log('hi motherfucker')
+    console.log('nooooooo')
   }
 
   return {name, symbol, input }
@@ -41,8 +55,8 @@ const gameBoard = (function(){
 
   const checkWinnings = (playerSymbol) => {
     WINNINGS.forEach(combo => {
-      if (combo.every((ele) => {
-        board[ele] === playerSymbol
+      if (combo.every((index) => {
+        board[index] === playerSymbol
       })){
         return true
       }

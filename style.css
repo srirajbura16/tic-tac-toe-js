@@ -48,3 +48,8 @@ header{
   cursor: pointer;
   background-color: cadetblue;
 }
+
+.refresh{
+  display: none;
+  margin: 0 auto;
+}

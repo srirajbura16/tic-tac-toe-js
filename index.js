@@ -1,8 +1,6 @@
 //Selectors
 const container = document.querySelector('#cell-container')
-// let message = document.querySelector('.message')
-//Players
-
+const playAgain = document.querySelector('.refresh')
 
 //---------
 const Player = (name, symbol) => {
@@ -34,7 +32,8 @@ const gameBoard = (function(){
   const win = (player) => {
     WINNINGS.forEach(combo => {
       if (combo.every(index => board[index] === player.symbol)){
-        alert(`${player.name}(${player.symbol}), WINS!!`)
+        alert(`${player.name}(${player.symbol}), WINS!!\n\nRefresh to play again!`)
+        refresh()
         render()
         return true
       }
@@ -43,8 +42,16 @@ const gameBoard = (function(){
   }
 
   const full = () => {
-    return board.every(ele => ele !== '') && 
-    alert('TIE!')
+    if (board.every(ele => ele !== '')) {
+      alert('TIE!\n\nRefresh to play again!')
+      refresh()
+      return true
+    } 
+  }
+
+  const refresh = () => {
+    playAgain.style.display = 'block'
+    return playAgain.addEventListener('click',location.reload.bind(location))
   }
 
   return {board, render, win, full}
@@ -105,7 +112,7 @@ const game = (function(xPlayer, oPlayer){
     }
   }
 
-  return {currentPlayer, play}
+  return {play}
 })(xPlayer, oPlayer)
 
 game.play()
